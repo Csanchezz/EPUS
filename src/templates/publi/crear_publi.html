@@ -1,0 +1,40 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block content %}
+<section class="content-header">
+	<h1>Crear Publicación</h1>
+</section>
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				<div class="box box-navy">
+					<div class="box-header">
+						<div class="box-title">Crear publicación</div>
+					</div>
+					<div class="box-body">
+						<table class="table table-hover table-striped table-bordered">
+							<form role="form" method="POST" align="center" action="{{action}}" enctype="multipart/form-data">
+							{% csrf_token %}
+							{% for field in form %}
+							<tr>
+								<td>{{field.label}}</td>
+								<td>{{field | add_class:"form-control"}}</td>
+							</tr>
+							{% endfor %}
+							<tr>
+								<td></td>
+								<td><input type="submit" class="btn btn-primary" value="Guardar"></td>
+							</tr>
+								
+							</form>
+						</table>
+					</div>
+				</div>					
+			</div>
+		</div>
+	</div>
+</section>
+	
+{% endblock content %}
