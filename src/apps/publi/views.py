@@ -7,13 +7,16 @@ from django.views.generic.list import ListView
 from braces.views import LoginRequiredMixin, GroupRequiredMixin
 from django.urls import reverse_lazy
 
-class CreatePost(LoginRequiredMixin, CreateView):
+class CreatePost(LoginRequiredMixin, GroupRequiredMixin, CreateView):
+	group_required = [u"u_valle", ]
 	model = Publicacion
 	form_class = FormPublicacion
 	template_name = "publi/crear_publi.html"
 	success_url = reverse_lazy('view_post')
 
-class ViewPost(LoginRequiredMixin, ListView):
+
+class ViewPost(LoginRequiredMixin, GroupRequiredMixin, ListView):
+	group_required = [u"u_valle", ]
 	model = Publicacion
 	template_name = 'publi/view_publi.html'
 	#if ind is None:
@@ -38,7 +41,8 @@ class ViewPost(LoginRequiredMixin, ListView):
 	#	lista_q=lista.reverse()
 	#	return
 
-class EditPost(LoginRequiredMixin, UpdateView):
+class EditPost(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
+	group_required = [u"u_valle", ]
 	model = Publicacion
 	form_class = FormPublicacion
 	pk_url_kwarg = 'post_pk'
@@ -52,6 +56,14 @@ def publico(request):
 	template = 'publi/ver_publi.html'
 	context = {
 	'list' : latest_list,
+	}
+	return render(request, template, context)
+
+def error(request):
+	word= "Error en esto"
+	template = 'publi/error.html'
+	context = {
+	'word' : word,
 	}
 	return render(request, template, context)
 
