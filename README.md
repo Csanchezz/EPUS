@@ -1,10 +1,10 @@
-SUNI2
+EPUS
 =====
-de [Fundación Sergio Paiz Andrade](http://funsepa.org/)
+de [Universidad del Valle de Guatemala - Campus Sur](http://campussur.uvg.edu.gt/)
 
-### Sistema Unificado de Información
+### Easy Publication System
 
-Sistema encargado de gestionar toda la información relacionada con las operaciones de la [Funsepa](http://funsepa.org/).
+Sistema encargado de las publicaciones hechas en [UVG Campus Sur](http://campussur.uvg.edu.gt/).
 
 ## Dependencias
 
@@ -19,21 +19,22 @@ Sistema encargado de gestionar toda la información relacionada con las operacio
 #### Obtener el código
 Clonar este repositorio:
 ```
-git clone https://github.com/jinchuika/app-suni.git
+https://github.com/Csanchezz/EPUS.git
 ```
 
 #### Preparar el entorno
-Entrar a la carpeta del repositorio (`cd app-suni`) y crear una carpeta llamada `etc`. En esa carpeta, crear un ambiente virtual con `virtualenv` llamado `venv`
+Entrar a la carpeta del repositorio (`cd EPUS`) y crear una carpeta llamada `etc`. En esa carpeta, crear un ambiente virtual con `virtualenv` llamado `venv`
 ```
 virtualenv venv --no-site-packages --distribute
 ```
 Activar el ambiente virtual con
 ```
-source venv/bin/activate
+source venv/bin/activate (linux)
+venv\scripts\activate (windows)
 ```
 
 #### Instalar dependencias de Python
-Regresar a la carpeta raíz (`app-suni`) y instalar las dependencias con pip
+Regresar a la carpeta raíz (`EPUS`) y instalar las dependencias con pip
 ```
 pip install -r requirements.txt
 ```
