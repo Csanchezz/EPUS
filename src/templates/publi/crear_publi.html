@@ -2,9 +2,15 @@
 {% load staticfiles %}
 {% load widget_tweaks %}
 {% block content %}
+
 <section class="content-header">
 	<h1>Crear Publicación</h1>
 </section>
+{% if perm.publi %}
+
+<h1>Tienes permiso</h1>
+
+{%endif%}
 <section class="content">
 	<div class="container-fluid">
 		<div class="row">

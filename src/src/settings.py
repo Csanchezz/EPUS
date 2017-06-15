@@ -40,6 +40,7 @@ DJANGO_APPS = (
     'rest_framework',)
 
 THIRD_PARTY_APPS = (
+    'mathfilters',
     'braces',
     'easy_thumbnails',
     'dynamic_preferences',
@@ -229,3 +230,4 @@ CRONJOBS = [
 
 SOCIALACCOUNT_AUTO_SIGNUP = False
 ACCOUNT_SIGNUP_FORM_CLASS = None
+ACCOUNT_ADAPTER = 'apps.users.account_adapter.NoNewUsersAccountAdapter'

@@ -13,6 +13,7 @@ class CreatePost(LoginRequiredMixin, GroupRequiredMixin, CreateView):
 	form_class = FormPublicacion
 	template_name = "publi/crear_publi.html"
 	success_url = reverse_lazy('view_post')
+	
 
 
 class ViewPost(LoginRequiredMixin, GroupRequiredMixin, ListView):
@@ -53,17 +54,38 @@ class EditPost(LoginRequiredMixin, GroupRequiredMixin, UpdateView):
 def publico(request):
 	latest_publications_list = Publicacion.objects.all().order_by('id')
 	latest_list = latest_publications_list.reverse()
+
+
+	final_list= latest_list[0:4]
+	indice=[]
+	for i in range(1,21):
+		indice.append(i*4)
+
 	template = 'publi/ver_publi.html'
 	context = {
-	'list' : latest_list,
+	'indice': indice,
+	'list' : final_list,
 	}
 	return render(request, template, context)
 
-def error(request):
-	word= "Error en esto"
-	template = 'publi/error.html'
-	context = {
-	'word' : word,
-	}
-	return render(request, template, context)
+#def error(request):
+#	word= "Error en esto"
+#	template = 'publi/error.html'
+#	context = {
+#	'word' : word,
+#	}
+#	return render(request, template, context)
 
+def get_publications(request, ini, out):
+	latest_publications_list = Publicacion.objects.all().order_by('id')
+	latest_list = latest_publications_list.reverse()
+    
+    lista_vacia = []
+    for salida in lista_entrada:
+        lista_vacia.append({'id':salida.id, 'tecnico':str(salida.salida.tecnico), 'fecha': str(salida.salida.fecha), 'equipo':str(salida.equipo), 'cantidad': salida.cantidad})
+    
+    return HttpResponse(
+            json.dumps({
+                "tablainf": lista_vacia, 
+                })
+            )
