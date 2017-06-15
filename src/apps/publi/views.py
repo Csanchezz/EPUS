@@ -6,6 +6,8 @@ from django.views.generic.edit import CreateView, UpdateView
 from django.views.generic.list import ListView
 from braces.views import LoginRequiredMixin, GroupRequiredMixin
 from django.urls import reverse_lazy
+from django.http import HttpResponse
+import json
 
 class CreatePost(LoginRequiredMixin, GroupRequiredMixin, CreateView):
 	group_required = [u"u_valle", ]
@@ -68,24 +70,23 @@ def publico(request):
 	}
 	return render(request, template, context)
 
-#def error(request):
-#	word= "Error en esto"
-#	template = 'publi/error.html'
-#	context = {
-#	'word' : word,
-#	}
-#	return render(request, template, context)
+def error(request):
+	word= "Error en esto"
+	template = 'publi/error.html'
+	context = {
+	'word' : word,
+	}
+	return render(request, template, context)
 
 def get_publications(request, ini, out):
 	latest_publications_list = Publicacion.objects.all().order_by('id')
 	latest_list = latest_publications_list.reverse()
-    
-    lista_vacia = []
-    for salida in lista_entrada:
-        lista_vacia.append({'id':salida.id, 'tecnico':str(salida.salida.tecnico), 'fecha': str(salida.salida.fecha), 'equipo':str(salida.equipo), 'cantidad': salida.cantidad})
-    
-    return HttpResponse(
+	final_list=latest_list[int(ini):int(out)]
+	lista_vacia = []
+	for publi in final_list:
+		lista_vacia.append({'titulo':str(publi.titulo), 'parrafo':publi.parrafo, 'foto': str(publi.foto)})
+	return HttpResponse(
             json.dumps({
-                "tablainf": lista_vacia, 
+                "publicaciones": lista_vacia, 
                 })
             )
