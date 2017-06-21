@@ -60,7 +60,7 @@ def publico(request):
 
 	final_list= latest_list[0:4]
 	indice=[]
-	for i in range(1,21):
+	for i in range(1,6):
 		indice.append(i*4)
 
 	template = 'publi/ver_publi.html'

@@ -13,7 +13,7 @@ function get_publications(ini, out){
           texto += "<div class='box box-primary' style='height:350px;'>";
           texto += "<div class='box-header'>";
           texto += "<div class='box-title'>" + item.titulo + "</div></div>";
-          texto += "<div class='box-body'><p>" + item.parrafo + "</p><img style='height:200px;display:block;margin:0 auto 0 auto;' src='../media/"+item.foto+" '></div></div></div>";
+          texto += "<div class='box-body'><p>" + item.parrafo + "</p class='photo'><img style='height:200px;display:block;margin:0 auto 0 auto;' src='../media/"+item.foto+" '></div></div></div>";
         })
       };
       document.getElementById('pub').innerHTML = texto;
