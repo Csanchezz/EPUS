@@ -1,1 +1,0 @@
-[{"model": "tpe.equipamientoestado", "pk": 1, "fields": {"estado": "Entregado"}}, {"model": "tpe.equipamientoestado", "pk": 2, "fields": {"estado": "No entregado"}}]
