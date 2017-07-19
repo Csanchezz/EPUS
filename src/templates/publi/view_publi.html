@@ -1,0 +1,34 @@
+{% extends "base/base.html" %}
+{% load staticfiles %}
+{% load widget_tweaks %}
+{% block content %}
+{% load thumbnail %}
+
+<section class="content-header">
+	<h1>Ver Publicaciones</h1>
+</section>
+<section class="content">
+	<div class="container-fluid">
+		<div class="row">
+			<div class="col-md-12">
+				{% for post in publicacion_list reversed %}
+				<div class="col-md-6">
+					<div class="box box-primary" style="height:350px;">
+						<div class="box-header">
+						<a class="btn btn-success btn-flat  btn-xs pull-right" href="{% url 'edit_post' post_pk=post.id %}"><i class="fa fa-cog fa-spin fa-2x fa-fw"></i></a>
+							<div class="box-title">{{post}}</div>
+						</div>
+						<div class="box-body">
+							<p>{{post.parrafo}}</p>
+							<img style="display:block;margin:0 auto 0 auto;" src="{% thumbnail post.foto 200x200 crop %}" alt="{{post}}" />
+
+						</div>
+					</div>					
+				</div>
+				{% endfor %}
+			</div>
+		</div>
+	</div>
+</section>
+
+{% endblock content %}

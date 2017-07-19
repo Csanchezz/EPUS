@@ -1,0 +1,74 @@
+{% extends "base/base-account.html" %}
+{% block content %}
+{% load widget_tweaks %}
+{% load account socialaccount %}
+{% load i18n %}
+{% get_providers as socialaccount_providers %}
+
+<div class="container">
+	<div class="row">
+		<div class="col-md-4 col-md-offset-4 col-sm-6 col-sm-offset-3 col-xs-10 col-xs-offset-1 ">
+
+			<div class="register-card">
+				<!--<div class="login-logo">
+					<a href="#"> <b><i class="fa fa-university" aria-hidden="true"></i>               EPUS</b></a>
+				</div>-->
+				<h3 class="title">Inicio de sesión</h3>
+				
+
+
+				<form action="{{action}}" method="post" class="register-form">
+					{{ form.non_field_errors }}
+					{% csrf_token %}
+					<div class="form-group has-feedback">
+						{{ form.login|append_attr:"class:form-control"}}
+						<span class="glyphicon glyphicon-user form-control-feedback"></span>
+					</div>
+					<div class="form-group has-feedback">
+						{{ form.password|append_attr:"class:form-control"}}
+						<span class="glyphicon glyphicon-lock form-control-feedback"></span>
+					</div>
+
+					<button type="submit" class="btn btn-default btn-block btn-fill">Entrar</button>
+					
+					<label class="checkbox">
+						{{ form.remember }} Recordar sesión
+					</label>
+					
+
+					<div class="forgot" >
+						<button type="button" class="btn btn-default btn-simple btn-tooltip" data-toggle="tooltip" data-placement="bottom" title="Ponte en contacto con el Administrador para restaurar tu contraseña" >Olvidaste tu Contraseña?</button>
+					</div>
+				</form>
+				<div class="social-auth-links text-center">
+					{% if socialaccount_providers %}
+					{% for provider in socialaccount_providers %}
+					<p></p>
+					<a href="{% provider_login_url provider.id process=process scope=scope auth_params=auth_params %}" class="btn btn-block btn-neutral btn-{{provider.id}} btn-flat"><i class="fa fa-{{provider.id}}"></i> Entrar con 
+						{{provider.name}}</a>
+						{% endfor %}
+
+						{% endif %}
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
+
+
+
+
+
+<div class="footer register-footer text-center">
+	<h6>&copy; 2017  <i class="fa fa-university "></i> Universidad del Valle de Guatemala Campus Sur</h6>
+</div>
+
+
+{% endblock content %}
+{% block extra_js %}
+<script type="text/javascript">
+	$('.btn-tooltip').tooltip();
+	$(':checkbox').checkbox();
+</script>
+
+{% endblock extra_js %}
